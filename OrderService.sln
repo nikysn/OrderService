@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.API", "OrderService.API\OrderService.API.csproj", "{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.DAL", "OrderService.DAL\OrderService.DAL.csproj", "{BCFE1C87-CE12-410C-95F9-268DA410A525}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFE1C87-CE12-410C-95F9-268DA410A525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFE1C87-CE12-410C-95F9-268DA410A525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFE1C87-CE12-410C-95F9-268DA410A525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFE1C87-CE12-410C-95F9-268DA410A525}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
