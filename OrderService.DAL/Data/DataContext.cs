@@ -26,7 +26,7 @@ namespace OrderService.DAL.Data
         {
             base.OnModelCreating(modelBuilder);
         }*/
-
+        public DbSet<OrderEntity> OrderEntities { get; set; }
         public DbSet<OrderHeaderEntity> OrderHeaders { get; set; }
         public DbSet<OrderLineItemEntity> OrdersLineItems { get; set; }
     }

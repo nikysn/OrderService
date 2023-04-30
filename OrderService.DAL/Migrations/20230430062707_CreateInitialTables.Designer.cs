@@ -12,8 +12,8 @@ using OrderService.DAL.Data;
 namespace OrderService.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230426124658_init")]
-    partial class init
+    [Migration("20230430062707_CreateInitialTables")]
+    partial class CreateInitialTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,17 @@ namespace OrderService.DAL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("OrderService.DAL.Entities.OrderEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderEntities");
+                });
+
             modelBuilder.Entity("OrderService.DAL.Entities.OrderHeaderEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -34,10 +45,16 @@ namespace OrderService.DAL.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.ToTable("OrderHeaders");
                 });
@@ -48,7 +65,10 @@ namespace OrderService.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("OrderHeaderId")
+                    b.Property<Guid>("ItemId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Quantity")
@@ -56,24 +76,38 @@ namespace OrderService.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderHeaderId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrdersLineItems");
                 });
 
-            modelBuilder.Entity("OrderService.DAL.Entities.OrderLineItemEntity", b =>
+            modelBuilder.Entity("OrderService.DAL.Entities.OrderHeaderEntity", b =>
                 {
-                    b.HasOne("OrderService.DAL.Entities.OrderHeaderEntity", "OrderHeader")
-                        .WithMany("OrderLineItemEntities")
-                        .HasForeignKey("OrderHeaderId")
+                    b.HasOne("OrderService.DAL.Entities.OrderEntity", "Order")
+                        .WithOne("Header")
+                        .HasForeignKey("OrderService.DAL.Entities.OrderHeaderEntity", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("OrderHeader");
+                    b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("OrderService.DAL.Entities.OrderHeaderEntity", b =>
+            modelBuilder.Entity("OrderService.DAL.Entities.OrderLineItemEntity", b =>
                 {
+                    b.HasOne("OrderService.DAL.Entities.OrderEntity", "Order")
+                        .WithMany("OrderLineItemEntities")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("OrderService.DAL.Entities.OrderEntity", b =>
+                {
+                    b.Navigation("Header")
+                        .IsRequired();
+
                     b.Navigation("OrderLineItemEntities");
                 });
 #pragma warning restore 612, 618
