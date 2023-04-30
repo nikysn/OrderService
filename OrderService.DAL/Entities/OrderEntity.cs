@@ -19,7 +19,7 @@ namespace OrderService.DAL.Entities
         }
         public OrderEntity(int quantityItem) : this()
         {
-            var orderLineItemEntity = new OrderLineItemEntity(quantityItem,Id);
+            var orderLineItemEntity = new OrderLineItemEntity(Id, quantityItem);
             OrderLineItemEntities.Add(orderLineItemEntity);
         }
     }

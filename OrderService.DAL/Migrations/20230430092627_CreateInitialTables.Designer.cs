@@ -12,7 +12,7 @@ using OrderService.DAL.Data;
 namespace OrderService.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230430062707_CreateInitialTables")]
+    [Migration("20230430092627_CreateInitialTables")]
     partial class CreateInitialTables
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace OrderService.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderEntities");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OrderService.DAL.Entities.OrderHeaderEntity", b =>

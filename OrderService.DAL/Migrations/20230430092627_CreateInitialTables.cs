@@ -12,14 +12,14 @@ namespace OrderService.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "OrderEntities",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderEntities", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -35,9 +35,9 @@ namespace OrderService.DAL.Migrations
                 {
                     table.PrimaryKey("PK_OrderHeaders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderHeaders_OrderEntities_OrderId",
+                        name: "FK_OrderHeaders_Orders_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "OrderEntities",
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -55,9 +55,9 @@ namespace OrderService.DAL.Migrations
                 {
                     table.PrimaryKey("PK_OrdersLineItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrdersLineItems_OrderEntities_OrderId",
+                        name: "FK_OrdersLineItems_Orders_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "OrderEntities",
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -84,7 +84,7 @@ namespace OrderService.DAL.Migrations
                 name: "OrdersLineItems");
 
             migrationBuilder.DropTable(
-                name: "OrderEntities");
+                name: "Orders");
         }
     }
 }

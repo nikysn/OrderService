@@ -13,20 +13,8 @@ namespace OrderService.DAL.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-
-       /* protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            if (!options.IsConfigured)
-            {
-                options.UseNpgsql("Server=localhost;Port=5432;Database=OrderService; User Id=postgres;Password=123");
-            }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }*/
-        public DbSet<OrderEntity> OrderEntities { get; set; }
+       
+        public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<OrderHeaderEntity> OrderHeaders { get; set; }
         public DbSet<OrderLineItemEntity> OrdersLineItems { get; set; }
     }

@@ -30,7 +30,7 @@ namespace OrderService.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderEntities");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OrderService.DAL.Entities.OrderHeaderEntity", b =>

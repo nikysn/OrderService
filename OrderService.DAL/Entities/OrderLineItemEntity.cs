@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderService.DAL.Entities
+﻿namespace OrderService.DAL.Entities
 {
     public class OrderLineItemEntity
     {
@@ -19,7 +12,7 @@ namespace OrderService.DAL.Entities
             Id = Guid.NewGuid();
             ItemId = Guid.NewGuid();
         }
-        public OrderLineItemEntity(int quantityItem,Guid orderId) : this()
+        public OrderLineItemEntity(Guid orderId, int quantityItem) : this()
         {
             Quantity = quantityItem;
             OrderId = orderId;
