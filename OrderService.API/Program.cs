@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using OrderService.BL.Abstraction;
+using OrderService.BL.Services;
+using OrderService.DAL.Abstraction.Repositories;
 using OrderService.DAL.Data;
+using OrderService.DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(connectionString));
-
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderSvc>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -10,9 +10,19 @@ namespace OrderService.DAL.Entities
     public class OrderLineItemEntity
     {
         public Guid Id { get; set; }
-        [Range(0, int.MaxValue, ErrorMessage = "Количество должно быть целым, не отрицательным числом")]
+        public Guid ItemId { get; set; }
         public int Quantity { get; set; }
-        public Guid OrderHeaderId { get; set; }
-        public OrderHeaderEntity OrderHeader { get; set; }
+        public Guid OrderId { get; set; }
+        public OrderEntity Order { get; set; }
+        public OrderLineItemEntity()
+        {
+            Id = Guid.NewGuid();
+            ItemId = Guid.NewGuid();
+        }
+        public OrderLineItemEntity(int quantityItem,Guid orderId) : this()
+        {
+            Quantity = quantityItem;
+            OrderId = orderId;
+        }
     }
 }

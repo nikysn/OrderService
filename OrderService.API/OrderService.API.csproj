@@ -18,10 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\OrderService.BL\OrderService.BL.csproj" />
     <ProjectReference Include="..\OrderService.DAL\OrderService.DAL.csproj" />
   </ItemGroup>
 
