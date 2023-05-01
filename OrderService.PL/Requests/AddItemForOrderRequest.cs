@@ -1,5 +1,4 @@
-﻿
-namespace OrderService.DAL.Contracts.Requests
+﻿namespace OrderService.PL.Requests
 {
     public class AddItemForOrderRequest
     {

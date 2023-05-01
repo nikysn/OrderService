@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrderService.BL.Abstraction;
-using OrderService.DAL.Contracts.Requests;
-using OrderService.DAL.Contracts.Responses;
+using OrderService.API.Model.Requests;
+using OrderService.API.Model.Responces;
+using OrderService.Contracts.Abstraction.Services;
+using OrderService.Contracts.DTOModels;
 
 namespace OrderService.API.Controllers
 {
@@ -16,33 +17,57 @@ namespace OrderService.API.Controllers
         }
 
         [HttpGet("GetOrderId")]
-        public async Task<OrderResponse> GetOrderId(Guid orderId)
+        public async Task<OrderResponse> GetOrderId(Guid orderHeaderId)
         {
-            return await _orderService.GetOrderId(orderId);
+            var orderDto = await _orderService.GetOrderId(orderHeaderId);
+            var orderResponse = MapOrderDtoToOrderResponse(orderDto);
+
+            return orderResponse;
         }
 
         [HttpPost("CreateOrder")]
-        public async Task<OrderResponse> CreateOrder( int quantityItem)
+        public async Task<OrderResponse> CreateOrder(int quantityItem)
         {
-            return await _orderService.CreateOrder(quantityItem);
+            var orderDto = await _orderService.CreateOrder(quantityItem);
+            var orderResponse = MapOrderDtoToOrderResponse(orderDto);
+
+            return orderResponse;
         }
 
         [HttpPut("ChangeOrderStatus")]
-        public async Task<OrderResponse> ChangeOrderStatus([FromBody] ChangeOrderStatusRequest request)
+        public async Task<OrderResponse> ChangeOrderStatus([FromBody] ChangeOrderStatusRequest changeOrderStatusRequest)
         {
-            return await _orderService.ChangeOrderStatus(request);
+            var changeOrderStatusDto = new ChangeOrderStatusDto
+            {
+                OrderHeaderId = changeOrderStatusRequest.OrderHeaderId,
+                NewStatus = changeOrderStatusRequest.NewStatus
+            };
+
+            var orderDto = await _orderService.ChangeOrderStatus(changeOrderStatusDto);
+            var orderResponse = MapOrderDtoToOrderResponse(orderDto);
+
+            return orderResponse;
         }
 
         [HttpPut("AddItemForOrder")]
-        public async Task<OrderResponse> AddItemForOrder([FromBody] AddItemForOrderRequest request)
+        public async Task<OrderResponse> AddItemForOrder([FromBody] AddItemForOrderRequest addItemForOrderRequest)
         {
-            return await _orderService.AddItemForOrder(request);
+            var addItemForOrderDto = new AddItemForOrderDto
+            {
+                OrderHeaderId = addItemForOrderRequest.OrderHeaderId,
+                QuantityItem = addItemForOrderRequest.QuantityItem,
+            };
+
+            var orderDto = await _orderService.AddItemForOrder(addItemForOrderDto);
+            var orderResponse = MapOrderDtoToOrderResponse(orderDto);
+
+            return orderResponse;
         }
         
         [HttpDelete("DeleteOrder")]
-        public async Task<ActionResult> DeleteOrder(Guid orderId)
+        public async Task<ActionResult> DeleteOrder(Guid orderHeaderId)
         {
-            await _orderService.DeleteOrder(orderId);
+            await _orderService.DeleteOrder(orderHeaderId);
             return Ok();
         }
 
@@ -51,6 +76,23 @@ namespace OrderService.API.Controllers
         {
             await _orderService.DeleteItemForOrder(lineItemId);
             return Ok();
+        }
+
+        private OrderResponse MapOrderDtoToOrderResponse(OrderDto orderDto)
+        {
+            var orderResponse = new OrderResponse
+            {
+                OrderHeaderId = orderDto.OrderHeaderId,
+                Status = orderDto.Status,
+                CreatedDate = orderDto.DateCreated,
+                Lines = orderDto.OrderLineItemsDto.Select(o => new LineItemResponse
+                {
+                    ItemId = o.Id,
+                    Qty = o.Quantity
+                }).ToList()
+            };
+
+            return orderResponse;
         }
     }
 }

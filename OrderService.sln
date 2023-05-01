@@ -3,11 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.API", "OrderService.API\OrderService.API.csproj", "{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.API", "OrderService.API\OrderService.API.csproj", "{40A429D5-CDB2-4B9D-8D78-2E4EC47BFB92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.DAL", "OrderService.DAL\OrderService.DAL.csproj", "{BCFE1C87-CE12-410C-95F9-268DA410A525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.DAL", "OrderService.DAL\OrderService.DAL.csproj", "{BCFE1C87-CE12-410C-95F9-268DA410A525}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18E697C1-BCE2-4B89-962E-6A442EF47206} = {18E697C1-BCE2-4B89-962E-6A442EF47206}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.BL", "OrderService.BL\OrderService.BL.csproj", "{A46B3E1D-4D24-40C3-ABD4-F1C2492F8269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.BL", "OrderService.BL\OrderService.BL.csproj", "{A46B3E1D-4D24-40C3-ABD4-F1C2492F8269}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18E697C1-BCE2-4B89-962E-6A442EF47206} = {18E697C1-BCE2-4B89-962E-6A442EF47206}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Contracts", "OrderService.Contracts\OrderService.Contracts.csproj", "{18E697C1-BCE2-4B89-962E-6A442EF47206}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,10 @@ Global
 		{A46B3E1D-4D24-40C3-ABD4-F1C2492F8269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A46B3E1D-4D24-40C3-ABD4-F1C2492F8269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A46B3E1D-4D24-40C3-ABD4-F1C2492F8269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E697C1-BCE2-4B89-962E-6A442EF47206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E697C1-BCE2-4B89-962E-6A442EF47206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E697C1-BCE2-4B89-962E-6A442EF47206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E697C1-BCE2-4B89-962E-6A442EF47206}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿namespace OrderService.DAL.Common
+﻿namespace OrderService.Contracts.Common
 {
     public enum OrderStatus
     {

@@ -1,8 +1,7 @@
-﻿using OrderService.DAL.Common;
-using OrderService.DAL.Contracts.Requests;
-using OrderService.DAL.Contracts.Responses;
+﻿using OrderService.PL.Models.Requests;
+using OrderService.PL.Models.Responses;
 
-namespace OrderService.BL.Abstraction
+namespace Contracts.Abstraction.Services
 {
     public interface IOrderSvc
     {

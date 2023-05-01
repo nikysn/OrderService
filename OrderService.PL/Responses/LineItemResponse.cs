@@ -1,4 +1,4 @@
-﻿namespace OrderService.DAL.Contracts.Responses
+﻿namespace OrderService.PL.Responses
 {
     public class LineItemResponse
     {
