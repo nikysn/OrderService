@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using OrderService.BL.Abstraction;
 using OrderService.BL.Services;
-using OrderService.DAL.Abstraction.Repositories;
+using OrderService.Contracts.Abstraction.Repositories;
+using OrderService.Contracts.Abstraction.Services;
 using OrderService.DAL.Data;
 using OrderService.DAL.Repositories;
 

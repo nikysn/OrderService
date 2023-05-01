@@ -1,11 +1,10 @@
 ﻿using OrderService.DAL.Common;
 
-namespace OrderService.DAL.Contracts.Requests
+namespace OrderService.PL.Requests
 {
-    public class ChangeOrderRequest
+    public class ChangeOrderStatusRequest
     {
         public Guid OrderId { get; set; }
         public OrderStatus NewStatus { get; set; }
-        public int QuantityItem { get; set; }
     }
 }

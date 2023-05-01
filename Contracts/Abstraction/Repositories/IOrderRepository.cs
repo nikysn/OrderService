@@ -1,6 +1,6 @@
-﻿using OrderService.DAL.Entities;
+﻿//using OrderService.DAL.Entities;
 
-namespace OrderService.DAL.Abstraction.Repositories
+namespace Contracts.Abstraction.Repositories
 {
     public interface IOrderRepository
     {
