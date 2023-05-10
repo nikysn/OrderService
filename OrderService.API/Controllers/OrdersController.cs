@@ -8,16 +8,16 @@ namespace OrderService.API.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly IOrderSvc _orderService;
-        public OrderController(IOrderSvc orderService)
+        public OrdersController(IOrderSvc orderService)
         {
             _orderService = orderService;
         }
 
-        [HttpGet("GetOrderId")]
-        public async Task<OrderResponse> GetOrderId(Guid orderHeaderId)
+        [HttpGet("{orderHeaderId}")]
+        public async Task<OrderResponse> GetOrderId([FromRoute] Guid orderHeaderId)
         {
             var orderDto = await _orderService.GetOrderId(orderHeaderId);
             var orderResponse = MapOrderDtoToOrderResponse(orderDto);
@@ -82,9 +82,9 @@ namespace OrderService.API.Controllers
         {
             var orderResponse = new OrderResponse
             {
-                OrderHeaderId = orderDto.OrderHeaderId,
+                Id = orderDto.OrderHeaderId,
                 Status = orderDto.Status,
-                CreatedDate = orderDto.DateCreated,
+                Created = orderDto.DateCreated,
                 Lines = orderDto.OrderLineItemsDto.Select(o => new LineItemResponse
                 {
                     ItemId = o.Id,

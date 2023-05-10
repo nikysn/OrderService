@@ -2,9 +2,9 @@
 {
     public class OrderResponse
     {
-        public Guid OrderHeaderId { get; set; }
+        public Guid Id { get; set; }
         public string Status { get; set; }
-        public string CreatedDate { get; set; }
+        public string Created { get; set; }
         public List<LineItemResponse> Lines { get; set; }
     }
 }
